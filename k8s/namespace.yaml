@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pulsehr
+  labels:
+    app.kubernetes.io/name: pulsehr
+    app.kubernetes.io/part-of: enterprise-suite
+    app.kubernetes.io/managed-by: kubectl

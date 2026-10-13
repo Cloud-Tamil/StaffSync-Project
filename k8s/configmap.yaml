@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pulsehr-config
+  namespace: pulsehr
+  labels:
+    app.kubernetes.io/name: pulsehr
+    app.kubernetes.io/component: config
+data:
+  APP_ENV: "production"
+  APP_NAME: "PulseHR Enterprise"
+  PORT: "80"
+  API_BASE_URL: "/api/v1"
+  LOG_LEVEL: "info"
+  ENABLE_BIOMETRIC_KIOSK: "true"
+  SESSION_TIMEOUT_MINUTES: "15"
+  TIMEZONE: "UTC"

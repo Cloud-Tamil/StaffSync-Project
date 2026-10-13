@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+:root {
+  --app-primary: #1e40af;
+  --app-primary-hover: #1d4ed8;
+  --app-primary-light: rgba(30, 64, 175, 0.12);
+  --app-accent: #0d9488;
+  --app-bg: #f8fafc;
+  --app-surface: #ffffff;
+  --app-surface-subtle: #f1f5f9;
+  --app-border: #e2e8f0;
+  --app-text: #0f172a;
+  --app-text-muted: #64748b;
+  --app-radius: 10px;
+}
+
+[data-mode="dark"] {
+  color-scheme: dark;
+}
+
+@layer base {
+  html, body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--app-bg);
+    color: var(--app-text);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-feature-settings: "tnum" 1;
+  }
+}
+
+.theme-bg {
+  background-color: var(--app-bg) !important;
+}
+
+.theme-surface {
+  background-color: var(--app-surface) !important;
+}
+
+.theme-surface-subtle {
+  background-color: var(--app-surface-subtle) !important;
+}
+
+.theme-border {
+  border-color: var(--app-border) !important;
+}
+
+.theme-text {
+  color: var(--app-text) !important;
+}
+
+.theme-text-muted {
+  color: var(--app-text-muted) !important;
+}
+
+.theme-primary-btn {
+  background-color: var(--app-primary) !important;
+  color: #ffffff !important;
+}
+
+.theme-primary-btn:hover {
+  background-color: var(--app-primary-hover) !important;
+}
+
+.theme-primary-text {
+  color: var(--app-primary) !important;
+}
+
+.theme-primary-badge {
+  background-color: var(--app-primary-light) !important;
+  color: var(--app-primary) !important;
+}
+
+.theme-rounded {
+  border-radius: var(--app-radius) !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--app-border);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--app-text-muted);
+}

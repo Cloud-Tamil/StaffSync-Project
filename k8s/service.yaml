@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pulsehr-service
+  namespace: pulsehr
+  labels:
+    app: pulsehr
+    app.kubernetes.io/name: pulsehr
+    app.kubernetes.io/component: frontend
+spec:
+  # NodePort allows direct access on <NodeIP>:30080
+  # Change to type: LoadBalancer if deploying directly onto AWS EKS, GCP GKE, or Azure AKS
+  type: NodePort
+  selector:
+    app: pulsehr
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      nodePort: 30080
+      protocol: TCP

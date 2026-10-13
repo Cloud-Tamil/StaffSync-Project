@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pulsehr-deployment
+  namespace: pulsehr
+  labels:
+    app: pulsehr
+    app.kubernetes.io/name: pulsehr
+    app.kubernetes.io/instance: pulsehr-production
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/component: frontend
+spec:
+  replicas: 2
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: pulsehr
+  template:
+    metadata:
+      labels:
+        app: pulsehr
+        app.kubernetes.io/name: pulsehr
+    spec:
+      serviceAccountName: pulsehr-service-account
+      containers:
+        - name: pulsehr
+          # Replace with your Docker registry or keep 'pulsehr:latest' for local Minikube / Kind / Docker Desktop
+          image: pulsehr:latest
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+
+          # Inject environment variables from ConfigMap & Secret
+          envFrom:
+            - configMapRef:
+                name: pulsehr-config
+            - secretRef:
+                name: pulsehr-secrets
+
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
+
+          # Liveness probe verifies the Nginx web server is responsive
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            timeoutSeconds: 3
+            failureThreshold: 3
+
+          # Readiness probe ensures traffic only routes when container is serving traffic
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL

@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: pulsehr-network-policy
+  namespace: pulsehr
+  labels:
+    app: pulsehr
+    app.kubernetes.io/name: pulsehr
+spec:
+  podSelector:
+    matchLabels:
+      app: pulsehr
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    # Allow incoming HTTP traffic on port 80 from any client/ingress controller
+    - ports:
+        - protocol: TCP
+          port: 80
+  egress:
+    # Allow outgoing DNS queries
+    - ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+    # Allow outgoing HTTPS/HTTP traffic for external APIs if needed
+    - ports:
+        - protocol: TCP
+          port: 80
+        - protocol: TCP
+          port: 443

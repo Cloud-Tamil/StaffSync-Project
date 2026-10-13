@@ -1,0 +1,6 @@
+{
+  "name": "Pulse HR & Employee Register",
+  "description": "Secure, enterprise-grade Employee Register system with attendance kiosk, shift scheduling roster, and payroll integration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

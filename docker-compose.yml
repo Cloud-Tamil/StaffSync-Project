@@ -1,0 +1,15 @@
+name: staffsync
+
+services:
+  pulsehr:
+    image: staffsync-pulsehr:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pulsehr-enterprise
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3001}:80"
+    environment:
+      - NODE_ENV=production
+
