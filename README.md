@@ -1,20 +1,27 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# 🏢 PulseHR Enterprise
 
-# Run and deploy your AI Studio app
+Modern, high-performance Human Resource & Workforce Management System built with React 19, TypeScript, Tailwind CSS, and Vite.
 
-This contains everything you need to run your app locally.
+---
 
-View your app in AI Studio: https://ai.studio/apps/d2cd8b6a-e401-454e-b8d2-b99ea76b2fb3
+## 🚀 Quick Deployment & Access Guides
 
-## Run Locally
+PulseHR Enterprise is containerized and cloud-ready for local development, Docker environments, Kubernetes clusters, and Minikube. Choose your preferred guide:
 
-**Prerequisites:**  Node.js
+| Guide | Description | Path |
+|---|---|---|
+| **☸️ Minikube Access Guide** | Step-by-step setup for **Minikube** on local machines and Google Cloud Shell | [`minikube/README.md`](./minikube/README.md) & [`docs/minikube-access.md`](./docs/minikube-access.md) |
+| **🐳 Docker & Compose Guide** | Production multi-stage Docker build, Docker Compose orchestration, and cleanup | [`docs/docker-access.md`](./docs/docker-access.md) |
+| **☸️ Kubernetes Production Guide** | Production Kubernetes manifests (Deployments, Services, Ingress, HPA, PDB) | [`docs/kubernetes-access.md`](./docs/kubernetes-access.md) & [`k8s/`](./k8s/) |
+| **💻 Local Development Guide** | Running natively with Node.js and Vite dev server | [`docs/Local-Access.md`](./docs/Local-Access.md) |
 
+---
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 🛠️ Tech Stack
+
+- **Frontend:** React 19, TypeScript, Lucide Icons
+- **Styling:** Tailwind CSS v4
+- **Build Tool:** Vite 6
+- **Server:** Nginx Alpine (production container)
+- **Containerization:** Multi-stage Dockerfile, Docker Compose
+- **Orchestration:** Kubernetes 1.25+ manifests & Kustomize
